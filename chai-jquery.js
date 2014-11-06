@@ -163,6 +163,14 @@
     });
   });
 
+  chai.Assertion.addProperty('focused', function () {
+    this.assert(
+        // Cannot use flag(this, 'object').is(':focus') due to ariya/phantomjs#10427
+        flag(this, 'object')[0] === document.activeElement
+      , 'expected #{this} to be focused'
+      , 'expected #{this} not to be focused');
+  });
+
   chai.Assertion.overwriteProperty('exist', function (_super) {
     return function () {
       var obj = flag(this, 'object');

@@ -756,4 +756,38 @@ describe("jQuery assertions", function(){
       }).should.fail("expected " + inspect(subject) + " not to have 'span'");
     });
   });
+
+  describe("focused", function(){
+    var subject = $('<input>');
+
+    beforeEach(function() {
+      subject.appendTo('#mocha');
+    });
+
+    afterEach(function() {
+      subject.remove();
+    });
+
+    it("passes when the element is focused", function(){
+      subject.focus();
+      subject.should.be.focused;
+    });
+
+    it("passes negated when the element is not focused", function(){
+      subject.should.not.be.focused;
+    });
+
+    it("fails when the element is not focused", function(){
+      (function(){
+        subject.should.be.focused;
+      }).should.fail("expected " + inspect(subject) + " to be focused");
+    });
+
+    it("fails negated when element is focused", function(){
+      (function(){
+        subject.focus();
+        subject.should.not.be.focused;
+      }).should.fail("expected " + inspect(subject) + " not to be focused");
+    });
+  });
 });
