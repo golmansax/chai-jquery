@@ -111,6 +111,14 @@ Assert that at least one element of the selection is disabled, using [`.is(':dis
     $('.disabled').should.be.disabled;
     expect($('input')).not.to.be.disabled;
 
+### `focused`
+Assert that the first element of the selection is focused, using 
+`$('.element')[0] === document.activeElement` (instead of `.is(':focused')`
+due to https://github.com/ariya/phantomjs/issues/10427)
+
+    $('.focused').should.be.focused;
+    expect($('input')).not.to.be.focused;
+    
 ### `empty`
 Assert that at least one element of the selection is empty, using [`.is(':empty')`](http://api.jquery.com/empty-selector/).
 If the object asserted against is not a jQuery object, the original implementation will be called.
